@@ -4,22 +4,26 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "turns")
 public class Turn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_turn")
-    private int id;
+    private Integer id;
 
     private Date days;
 
-    @Column(name = "id_diary")
-    private int idDiary;
+    @ManyToOne
+    @JoinColumn(name = "id_diary")
+    private Diary diary;
 
-    @Column(name = "id_turn_status")
-    private int idTurnStatus;
+    @ManyToOne
+    @JoinColumn(name = "id_turn_status")
+    private TurnStatus turnStatus;
 
-    @Column(name = "id_patient")
-    private int idPatient;
+    @ManyToOne
+    @JoinColumn(name = "id_patient")
+    private User patient;
 
     public Turn() {
     }
@@ -44,27 +48,31 @@ public class Turn {
         this.days = days;
     }
 
-    public int getIdDiary() {
-        return idDiary;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setIdDiary(int id_diary) {
-        this.idDiary = id_diary;
+    public Diary getDiary() {
+        return diary;
     }
 
-    public int getIdTurnStatus() {
-        return idTurnStatus;
+    public void setDiary(Diary diary) {
+        this.diary = diary;
     }
 
-    public void setIdTurnStatus(int id_turn_status) {
-        this.idTurnStatus = id_turn_status;
+    public TurnStatus getTurnStatus() {
+        return turnStatus;
     }
 
-    public int getIdPatient() {
-        return idPatient;
+    public void setTurnStatus(TurnStatus turnStatus) {
+        this.turnStatus = turnStatus;
     }
 
-    public void setIdPatient(int id_patient) {
-        this.idPatient = id_patient;
+    public User getPatient() {
+        return patient;
+    }
+
+    public void setPatient(User patient) {
+        this.patient = patient;
     }
 }
