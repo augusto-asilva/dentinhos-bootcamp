@@ -7,7 +7,7 @@ public class TurnStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_turn_status")
-    private int id;
+    private Integer id;
     private String name;
     private String description;
 

@@ -5,49 +5,24 @@ import java.util.List;
 
 @Entity
 @Table(name = "dentists")
-public class Dentist {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_dentitst")
-    private int id;
-
-    @OneToOne
-    private User user;
+public class Dentist extends User {
 
     @Column(name = "code_mp")
     private String codeMp;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id_diary")
     List<Diary> diaries;
 
     public Dentist() {
     }
 
-    public Dentist(User user, String codeMp, List<Diary> diaries) {
-        this.user = user;
+    public Dentist(String codeMp, List<Diary> diaries) {
         this.codeMp = codeMp;
         this.diaries = diaries;
     }
 
-    public Dentist(User user, String codeMp) {
-        this.user = user;
+    public Dentist(String codeMp) {
         this.codeMp = codeMp;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id_dentist) {
-        this.id = id_dentist;
-    }
-
-    public User getUsers() {
-        return user;
-    }
-
-    public void setUsers(User user) {
-        this.user = user;
     }
 
     public String getCodeMp() {

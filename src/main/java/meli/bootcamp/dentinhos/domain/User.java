@@ -1,14 +1,17 @@
 package meli.bootcamp.dentinhos.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
-    private int id;
+    private Integer id;
 
     private String password;
 
@@ -23,7 +26,7 @@ public class User {
     private String dni;
 
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String phone;
 
@@ -35,7 +38,7 @@ public class User {
     public User() {
     }
 
-    public User(String password, String userStatus, String name, String lastName, String dni, Date birthDate, String phone, String email, int idAddress) {
+    public User(String password, String userStatus, String name, String lastName, String dni, LocalDate birthDate, String phone, String email, int idAddress) {
         this.password = password;
         this.userStatus = userStatus;
         this.name = name;
@@ -95,11 +98,11 @@ public class User {
         this.dni = dni;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birth_date) {
+    public void setBirthDate(LocalDate birth_date) {
         this.birthDate = birth_date;
     }
 

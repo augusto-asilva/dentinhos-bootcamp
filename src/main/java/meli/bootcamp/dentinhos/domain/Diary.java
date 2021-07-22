@@ -1,6 +1,7 @@
 package meli.bootcamp.dentinhos.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -9,22 +10,22 @@ public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_diary")
-    private int id;
+    private Integer id;
 
     @Column(name = "start_time")
-    private Date startTime;
+    private LocalDateTime startTime;
 
     @Column(name = "ending_time")
-    private Date endingTime;
+    private LocalDateTime endingTime;
 
-    @Column(name = "id_dentist")
-    private int idDentist;
+    @ManyToOne
+    private Dentist dentist;
 
 
     public Diary() {
     }
 
-    public Diary(Date startTime, Date endingTime) {
+    public Diary(LocalDateTime startTime, LocalDateTime endingTime) {
         this.startTime = startTime;
         this.endingTime = endingTime;
     }
@@ -37,27 +38,27 @@ public class Diary {
         this.id = id_diary;
     }
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date start_time) {
+    public void setStartTime(LocalDateTime start_time) {
         this.startTime = start_time;
     }
 
-    public Date getEndingTime() {
+    public LocalDateTime getEndingTime() {
         return endingTime;
     }
 
-    public void setEndingTime(Date ending_time) {
+    public void setEndingTime(LocalDateTime ending_time) {
         this.endingTime = ending_time;
     }
 
-    public int getIdDentist() {
-        return idDentist;
+    public Dentist getDentist() {
+        return dentist;
     }
 
-    public void setIdDentist(int id_dentist) {
-        this.idDentist = id_dentist;
+    public void setDentist(Dentist dentist) {
+        this.dentist = dentist;
     }
 }
