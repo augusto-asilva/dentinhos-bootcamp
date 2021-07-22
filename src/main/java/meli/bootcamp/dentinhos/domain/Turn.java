@@ -28,6 +28,13 @@ public class Turn {
     public Turn() {
     }
 
+    public Turn(Date days, Diary diary, TurnStatus turnStatus, User patient) {
+        this.days = days;
+        this.diary = diary;
+        this.turnStatus = turnStatus;
+        this.patient = patient;
+    }
+
     public Turn(Date days) {
         this.days = days;
     }
