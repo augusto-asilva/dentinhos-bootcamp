@@ -1,5 +1,7 @@
 package meli.bootcamp.dentinhos.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -19,6 +21,8 @@ public class Diary {
     private LocalDateTime endingTime;
 
     @ManyToOne
+    @JoinColumn(name = "id_dentist")
+    @JsonBackReference
     private Dentist dentist;
 
 
