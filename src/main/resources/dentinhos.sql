@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `dentinhos`.`users`
+-- Table `dentinhos`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dentinhos`.`users` (
+CREATE TABLE IF NOT EXISTS `dentinhos`.`user` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `password` VARCHAR(45) NULL,
   `user_status` VARCHAR(45) NULL,
@@ -65,16 +65,16 @@ CREATE TABLE IF NOT EXISTS `dentinhos`.`dentists` (
   INDEX `fk_dentists_users1_idx` (`id_user` ASC) VISIBLE,
   CONSTRAINT `fk_dentists_users1`
     FOREIGN KEY (`id_user`)
-    REFERENCES `dentinhos`.`users` (`id_user`)
+    REFERENCES `dentinhos`.`user` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `dentinhos`.`diarys`
+-- Table `dentinhos`.`diaries`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `dentinhos`.`diarys` (
+CREATE TABLE IF NOT EXISTS `dentinhos`.`diaries` (
   `id_diary` INT NOT NULL AUTO_INCREMENT,
   `start_time` DATETIME NULL,
   `ending_time` DATETIME NULL,
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `dentinhos`.`turns` (
   INDEX `fk_turns_users1_idx` (`id_patient` ASC) VISIBLE,
   CONSTRAINT `fk_turns_diarys1`
     FOREIGN KEY (`id_diary`)
-    REFERENCES `dentinhos`.`diarys` (`id_diary`)
+    REFERENCES `dentinhos`.`diaries` (`id_diary`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_turns_turn_status1`
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `dentinhos`.`turns` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_turns_users1`
     FOREIGN KEY (`id_patient`)
-    REFERENCES `dentinhos`.`users` (`id_user`)
+    REFERENCES `dentinhos`.`user` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

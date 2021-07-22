@@ -1,14 +1,12 @@
 package meli.bootcamp.dentinhos.domain;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_address;
+    @Column(name = "id_address")
+    private int id;
     private String street;
     private String district;
 
@@ -20,12 +18,12 @@ public class Address {
         this.district = district;
     }
 
-    public int getId_address() {
-        return id_address;
+    public int getId() {
+        return id;
     }
 
-    public void setId_address(int id_address) {
-        this.id_address = id_address;
+    public void setId(int id_address) {
+        this.id = id_address;
     }
 
     public String getStreet() {
