@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class TurnService {
-    @Autowired
     private TurnRepository turnRepository;
+
+    @Autowired
+    public TurnService(TurnRepository turnRepository) {
+        this.turnRepository = turnRepository;
+    }
 
     private final Integer COMPLETED_TURN_ID = 1;
 
