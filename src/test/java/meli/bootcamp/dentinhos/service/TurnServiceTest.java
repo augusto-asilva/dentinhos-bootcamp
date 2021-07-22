@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +47,7 @@ class TurnServiceTest {
 
     private List<Turn> createCompletedTurns() {
         List<Turn> turns = new ArrayList<>();
-        turns.add(new Turn(new Date(), new Diary(), new TurnStatus("concluido", "concluido"), new User()));
+        turns.add(new Turn(LocalDate.now(), new Diary(), new TurnStatus("concluido", "concluido"), new User()));
         turns.get(0).getTurnStatus().setId(1);
         return turns;
     }

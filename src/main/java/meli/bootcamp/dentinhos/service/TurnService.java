@@ -5,6 +5,7 @@ import meli.bootcamp.dentinhos.repository.TurnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -21,4 +22,8 @@ public class TurnService {
     public List<Turn> findCompletedTurns() {
         return turnRepository.findByTurnStatusId(COMPLETED_TURN_ID);
     }
+
+    public List<Turn> findCompletedTurnsOnAGivingDay(LocalDate days) {
+        return turnRepository.findByTurnStatusIdAndDays(COMPLETED_TURN_ID, days);
+    };
 }

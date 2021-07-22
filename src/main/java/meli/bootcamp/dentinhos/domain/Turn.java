@@ -1,6 +1,7 @@
 package meli.bootcamp.dentinhos.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,7 +12,7 @@ public class Turn {
     @Column(name = "id_turn")
     private Integer id;
 
-    private Date days;
+    private LocalDate days;
 
     @ManyToOne
     @JoinColumn(name = "id_diary")
@@ -28,14 +29,14 @@ public class Turn {
     public Turn() {
     }
 
-    public Turn(Date days, Diary diary, TurnStatus turnStatus, User patient) {
+    public Turn(LocalDate days, Diary diary, TurnStatus turnStatus, User patient) {
         this.days = days;
         this.diary = diary;
         this.turnStatus = turnStatus;
         this.patient = patient;
     }
 
-    public Turn(Date days) {
+    public Turn(LocalDate days) {
         this.days = days;
     }
 
@@ -47,11 +48,11 @@ public class Turn {
         this.id = id_turm;
     }
 
-    public Date getDays() {
+    public LocalDate getDays() {
         return days;
     }
 
-    public void setDays(Date days) {
+    public void setDays(LocalDate days) {
         this.days = days;
     }
 
