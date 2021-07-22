@@ -1,5 +1,7 @@
 package meli.bootcamp.dentinhos.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +12,8 @@ public class Dentist extends User {
     @Column(name = "code_mp")
     private String codeMp;
 
-    @OneToMany(mappedBy = "id_diary")
+    @OneToMany(mappedBy = "id")
+    @JsonManagedReference
     List<Diary> diaries;
 
     public Dentist() {
