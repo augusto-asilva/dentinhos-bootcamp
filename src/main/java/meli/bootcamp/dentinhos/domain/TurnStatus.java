@@ -1,32 +1,30 @@
 package meli.bootcamp.dentinhos.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class turn_status {
+public class TurnStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_turn_status;
+    @Column(name = "id_turn_status")
+    private int id;
     private String name;
     private String description;
 
-    public turn_status() {
+    public TurnStatus() {
     }
 
-    public turn_status(String name, String description) {
+    public TurnStatus(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public int getId_turn_status() {
-        return id_turn_status;
+    public int getId() {
+        return id;
     }
 
-    public void setId_turn_status(int id_turn_status) {
-        this.id_turn_status = id_turn_status;
+    public void setId(int id_turn_status) {
+        this.id = id_turn_status;
     }
 
     public String getName() {

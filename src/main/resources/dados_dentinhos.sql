@@ -10,7 +10,7 @@ INSERT INTO address (street, district) VALUES
 ('Rua Parque da agua branca', 'Lapa'),
 ('Rua Alpha Numeros', 'Porto');
 
-INSERT INTO users (name, last_name, dni, birth_date, phone, email, password, user_status, id_address) VALUES
+INSERT INTO user (name, last_name, dni, birth_date, phone, email, password, user_status, id_address) VALUES
 ('dentinho0', 'dba0',  'DNIDNI0', '1990-07-21', '99009900', 'dentinho_2000@meli.com', 'dente', 'active', 1),
 ('dentinho1', 'dba1',  'DNIDNI1', '1990-07-21', '99009900', 'dentinho_2001@meli.com', 'dente', 'active', 2),
 ('dentinho2', 'dba2',  'DNIDNI2', '1990-07-21', '99009900', 'dentinho_2002@meli.com', 'dente', 'active', 3),
@@ -27,7 +27,7 @@ INSERT INTO dentists(id_user, code_mp) VALUES
 (2,'456de'),
 (3,'789fg');
 
-INSERT INTO diarys(start_time, ending_time, id_dentist) VALUES
+INSERT INTO diaries(start_time, ending_time, id_dentist) VALUES
 ('2021-07-21 09:00:00','2021-07-21 18:00:00',1),
 ('2021-07-22 09:00:00','2021-07-22 18:00:00',2),
 ('2021-07-23 09:00:00','2021-07-23 18:00:00',3);
