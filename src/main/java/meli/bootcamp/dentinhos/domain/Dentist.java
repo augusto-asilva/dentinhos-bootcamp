@@ -1,6 +1,11 @@
 package meli.bootcamp.dentinhos.domain;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -10,7 +15,8 @@ public class Dentist extends User {
     @Column(name = "code_mp")
     private String codeMp;
 
-    @OneToMany(mappedBy = "id_diary")
+    @OneToMany(mappedBy = "id")
+    @JsonManagedReference
     List<Diary> diaries;
 
     public Dentist() {
