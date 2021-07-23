@@ -1,10 +1,8 @@
 package meli.bootcamp.dentinhos.service;
 
-import meli.bootcamp.dentinhos.domain.Diary;
-import meli.bootcamp.dentinhos.domain.Turn;
-import meli.bootcamp.dentinhos.domain.TurnStatus;
-import meli.bootcamp.dentinhos.domain.User;
+import meli.bootcamp.dentinhos.domain.*;
 import meli.bootcamp.dentinhos.repository.TurnRepository;
+import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +11,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -45,10 +46,48 @@ class TurnServiceTest {
         assertEquals(1, turns.get(0).getTurnStatus().getId());
     }
 
+    @Test
+    void should_findRescheduledTurnsforAValidDentist() {
+        // arrange
+        Diary diary = this.createDiary();
+        Dentist dentist = diary.getDentist();
+        Turn turn = this.createRescheduledTurn();;
+        turn.setDiary(diary);
+        List<Turn> rescheduledDentistTurns = new ArrayList<>();
+        rescheduledDentistTurns.add(turn);
+        Mockito.when(turnRepository.findByTurnStatusIdAndDiaryDentistId(turn.getTurnStatus().getId(), dentist.getId()))
+                .thenReturn(rescheduledDentistTurns);
+
+        // action
+        List<Turn> turns = turnService.findRescheduledDentistTurns(dentist.getId());
+
+        // assertion
+        assertEquals(turns, rescheduledDentistTurns);
+    }
+
+    private Turn createRescheduledTurn() {
+        Turn turn = new Turn();
+        TurnStatus rescheduledTurnStatus = new TurnStatus("Reprogramado", "unit_test");
+        rescheduledTurnStatus.setId(4);
+        turn.setTurnStatus(rescheduledTurnStatus);
+        return turn;
+    }
+
+    private Diary createDiary() {
+        LocalDateTime startTime = LocalDateTime.of(2021, Month.JUNE, 21, 9, 30);
+        LocalDateTime endTime = LocalDateTime.of(2021, Month.JUNE, 21, 10, 30);
+        Diary diary = new Diary(startTime, endTime);
+        Dentist dentist = new Dentist("DTEST1", Arrays.asList(diary));
+        dentist.setId(1);
+        diary.setDentist(dentist);
+        return diary;
+    }
+
     private List<Turn> createCompletedTurns() {
         List<Turn> turns = new ArrayList<>();
-        turns.add(new Turn(LocalDate.now(), new Diary(), new TurnStatus("concluido", "concluido"), new User()));
-        turns.get(0).getTurnStatus().setId(1);
+        TurnStatus turnStatus = new TurnStatus("concluido", "concluido");
+        turnStatus.setId(1);
+        turns.add(new Turn(LocalDate.now(), new Diary(), turnStatus, new User()));
         return turns;
     }
 
