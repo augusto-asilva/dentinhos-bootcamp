@@ -76,9 +76,10 @@ class TurnServiceTest {
     private Diary createDiary() {
         LocalDateTime startTime = LocalDateTime.of(2021, Month.JUNE, 21, 9, 30);
         LocalDateTime endTime = LocalDateTime.of(2021, Month.JUNE, 21, 10, 30);
-        Diary diary = new Diary(startTime, endTime);
-        Dentist dentist = new Dentist("DTEST1", Arrays.asList(diary));
+        Dentist dentist = new Dentist("DTEST1", new ArrayList<>());
+        Diary diary = new Diary(1, startTime, endTime, dentist, new ArrayList<>());
         dentist.setId(1);
+        dentist.setDiaries(Arrays.asList(diary));
         diary.setDentist(dentist);
         return diary;
     }

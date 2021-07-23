@@ -53,8 +53,8 @@ public class TurnControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].patient.name", is("dentinho5")))
-                .andExpect(jsonPath("$[0].patient.lastName", is("dba5")));
+                .andExpect(jsonPath("$[0].patient.name", is("dentinho3")))
+                .andExpect(jsonPath("$[0].patient.lastName", is("dba3")));
     }
 
     @Test
