@@ -34,6 +34,11 @@ public class TurnController {
         return turnService.findCompletedTurns();
     }
 
+    @GetMapping("/rescheduled")
+    public List<Turn> rescheduledurns() {
+        return turnService.findRescheduledTurns();
+    }
+
     @GetMapping("/rescheduled/{dentistId}")
     public List<Turn> rescheduledDentistTurns(@PathVariable Integer dentistId) {
         return turnService.findRescheduledDentistTurns(dentistId);

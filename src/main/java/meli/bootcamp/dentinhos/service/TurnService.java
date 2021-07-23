@@ -1,6 +1,7 @@
 package meli.bootcamp.dentinhos.service;
 
 import meli.bootcamp.dentinhos.domain.Turn;
+import meli.bootcamp.dentinhos.domain.TurnStatus;
 import meli.bootcamp.dentinhos.dto.PendingTurnDTO;
 import meli.bootcamp.dentinhos.repository.TurnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,9 @@ public class TurnService {
 
     public List<Turn> findRescheduledDentistTurns(int dentistId) {
         return turnRepository.findByTurnStatusIdAndDiaryDentistId(RESCHEDULED_TURN_ID, dentistId);
+    }
+
+    public List<Turn> findRescheduledTurns() {
+        return turnRepository.findByTurnStatusId(RESCHEDULED_TURN_ID);
     }
 }

@@ -24,7 +24,7 @@ public class TurnControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void should_getEmployesDone_withinADay() throws Exception {
+    void should_getPatientsDone_withinADay() throws Exception {
 
         mockMvc.perform(get("/turns/completed/2021-07-21/patients")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -36,13 +36,25 @@ public class TurnControllerTest {
 
     @Test
     public void should_getPendingTurns_withinADay() throws Exception {
-        mockMvc.perform(get("/turns/pending/2021-07-23")
+        mockMvc.perform(get("/turns/pending/2021-07-22")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].patientDTO.name", is("dentinho5")))
-                .andExpect(jsonPath("$[0].patientDTO.lastName", is("dba5")));
+                .andExpect(jsonPath("$[0].patientDTO.name", is("dentinho8")))
+                .andExpect(jsonPath("$[0].patientDTO.lastName", is("dba8")));
+    }
+
+    @Test
+    void should_getRescheduledTurns() throws Exception {
+
+        mockMvc.perform(get("/turns/rescheduled")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].patient.name", is("dentinho5")))
+                .andExpect(jsonPath("$[0].patient.lastName", is("dba5")));
     }
 
     @Test

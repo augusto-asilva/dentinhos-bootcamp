@@ -18,7 +18,7 @@ public class Dentist extends User {
     @Column(name = "code_mp")
     private String codeMp;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     @JsonManagedReference
     List<Diary> diaries;
 
@@ -42,11 +42,11 @@ public class Dentist extends User {
         this.codeMp = code_mp;
     }
 
-    public List<Diary> getDiarys() {
+    public List<Diary> getDiaries() {
         return diaries;
     }
 
-    public void setDiarys(List<Diary> diaries) {
+    public void setDiaries(List<Diary> diaries) {
         this.diaries = diaries;
     }
 }

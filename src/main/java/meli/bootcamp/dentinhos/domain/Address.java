@@ -6,7 +6,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_address")
-    private int id;
+    private Integer id;
     private String street;
     private String district;
 
@@ -18,11 +18,11 @@ public class Address {
         this.district = district;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id_address) {
+    public void setId(Integer id_address) {
         this.id = id_address;
     }
 
