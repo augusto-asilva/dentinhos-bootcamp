@@ -1,25 +1,27 @@
 package meli.bootcamp.dentinhos.controller;
 
 import meli.bootcamp.dentinhos.domain.Turn;
-import meli.bootcamp.dentinhos.domain.User;
+import meli.bootcamp.dentinhos.dto.PendingTurnDTO;
 import meli.bootcamp.dentinhos.dto.UserContactResponseDTO;
 import meli.bootcamp.dentinhos.service.TurnService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("turns")
+@RequestMapping("/turns")
 public class TurnController {
 
-    @Autowired
     private TurnService turnService;
+
+    @Autowired
+    public TurnController(TurnService turnService) {
+        this.turnService = turnService;
+    }
 
     @GetMapping("/completed")
     public List<Turn> completedTurns() {
@@ -33,5 +35,11 @@ public class TurnController {
         List<Turn> turns = turnService.findCompletedTurnsOnAGivingDay(days);
         turns.forEach(turn -> users.add(new UserContactResponseDTO(turn.getPatient())));
         return users;
+    }
+
+    @GetMapping("/pending/{date}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<PendingTurnDTO> getPendingTurns(@PathVariable String date) {
+        return turnService.getPendingTurnsByDay(LocalDate.parse(date));
     }
 }

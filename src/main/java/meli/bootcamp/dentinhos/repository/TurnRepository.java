@@ -9,6 +9,9 @@ import java.util.List;
 
 @Repository
 public interface TurnRepository extends JpaRepository<Turn, Integer> {
+
+    List<Turn> findByTurnStatus_NameAndDays(String name, LocalDate date);
+
     List<Turn> findByTurnStatusId(Integer id);
 
     List<Turn> findByTurnStatusIdAndDays(Integer id, LocalDate days);

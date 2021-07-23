@@ -1,8 +1,11 @@
 package meli.bootcamp.dentinhos.domain;
 
+import meli.bootcamp.dentinhos.dto.DiaryDTO;
+import meli.bootcamp.dentinhos.dto.PatientDTO;
+import meli.bootcamp.dentinhos.dto.PendingTurnDTO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "turns")
@@ -75,5 +78,14 @@ public class Turn {
 
     public void setPatient(User patient) {
         this.patient = patient;
+    }
+
+    public PendingTurnDTO castToPendingTurnDTO() {
+        var diaryDTO = new DiaryDTO(this.diary.getStartTime(), this.diary.getEndingTime());
+        var patientDTO =
+                new PatientDTO(this.patient.getName(), this.patient.getLastName(), this.patient.getBirthDate(), this.patient.getPhone(), this.patient.getEmail());
+
+        return new PendingTurnDTO(this.days, this.turnStatus.getName(),patientDTO, diaryDTO);
+
     }
 }

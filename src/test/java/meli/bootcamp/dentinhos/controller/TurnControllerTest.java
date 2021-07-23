@@ -32,5 +32,16 @@ public class TurnControllerTest {
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].name", is("dentinho3")));
     }
+
+    @Test
+    public void should_getPendingTurns_withinADay() throws Exception {
+        mockMvc.perform(get("/turns/pending/2021-07-23")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].patientDTO.name", is("dentinho5")))
+                .andExpect(jsonPath("$[0].patientDTO.lastName", is("dba5")));
+    }
 }
 
