@@ -32,6 +32,13 @@ public class Turn {
     public Turn() {
     }
 
+    public Turn(LocalDate days, Diary diary, TurnStatus turnStatus, User patient) {
+        this.days = days;
+        this.diary = diary;
+        this.turnStatus = turnStatus;
+        this.patient = patient;
+    }
+
     public Turn(LocalDate days) {
         this.days = days;
     }
