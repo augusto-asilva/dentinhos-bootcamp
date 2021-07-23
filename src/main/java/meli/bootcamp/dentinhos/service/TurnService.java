@@ -14,14 +14,9 @@ import java.util.List;
 public class TurnService {
     private TurnRepository turnRepository;
 
-    @Autowired
-    public TurnService(TurnRepository turnRepository) {
-        this.turnRepository = turnRepository;
-    }
-
     private final Integer COMPLETED_TURN_ID = 1;
-
     private final String PENDING_TURN = "Pendente";
+    private final Integer RESCHEDULED_TURN_ID = 4;
 
     @Autowired
     public TurnService(TurnRepository turnRepository) {
@@ -50,5 +45,9 @@ public class TurnService {
             pendingTurnDTOs.add(turn.castToPendingTurnDTO());
         }
         return pendingTurnDTOs;
+    }
+
+    public List<Turn> findRescheduledDentistTurns(int dentistId) {
+        return turnRepository.findByTurnStatusIdAndDiaryDentistId(RESCHEDULED_TURN_ID, dentistId);
     }
 }
