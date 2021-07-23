@@ -88,8 +88,8 @@ public class Turn {
     }
 
     public PendingTurnDTO castToPendingTurnDTO() {
-        var diaryDTO = new DiaryDTO(this.diary.getStartTime(), this.diary.getEndingTime());
-        var patientDTO =
+        DiaryDTO diaryDTO = new DiaryDTO(this.diary.getStartTime(), this.diary.getEndingTime());
+        PatientDTO patientDTO =
                 new PatientDTO(this.patient.getName(), this.patient.getLastName(), this.patient.getBirthDate(), this.patient.getPhone(), this.patient.getEmail());
 
         return new PendingTurnDTO(this.days, this.turnStatus.getName(),patientDTO, diaryDTO);
