@@ -4,6 +4,8 @@ import meli.bootcamp.dentinhos.dto.DiaryDTO;
 import meli.bootcamp.dentinhos.dto.PatientDTO;
 import meli.bootcamp.dentinhos.dto.PendingTurnDTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -19,6 +21,7 @@ public class Turn {
 
     @ManyToOne
     @JoinColumn(name = "id_diary")
+    @JsonIgnore
     private Diary diary;
 
     @ManyToOne
