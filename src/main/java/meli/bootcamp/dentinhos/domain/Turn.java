@@ -1,5 +1,9 @@
 package meli.bootcamp.dentinhos.domain;
 
+import meli.bootcamp.dentinhos.dto.DiaryDTO;
+import meli.bootcamp.dentinhos.dto.PatientDTO;
+import meli.bootcamp.dentinhos.dto.PendingTurnDTO;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -29,6 +33,13 @@ public class Turn {
     private User patient;
 
     public Turn() {
+    }
+
+    public Turn(LocalDate days, Diary diary, TurnStatus turnStatus, User patient) {
+        this.days = days;
+        this.diary = diary;
+        this.turnStatus = turnStatus;
+        this.patient = patient;
     }
 
     public Turn(LocalDate days) {
@@ -77,5 +88,14 @@ public class Turn {
 
     public void setPatient(User patient) {
         this.patient = patient;
+    }
+
+    public PendingTurnDTO castToPendingTurnDTO() {
+        DiaryDTO diaryDTO = new DiaryDTO(this.diary.getStartTime(), this.diary.getEndingTime());
+        PatientDTO patientDTO =
+                new PatientDTO(this.patient.getName(), this.patient.getLastName(), this.patient.getBirthDate(), this.patient.getPhone(), this.patient.getEmail());
+
+        return new PendingTurnDTO(this.days, this.turnStatus.getName(),patientDTO, diaryDTO);
+
     }
 }

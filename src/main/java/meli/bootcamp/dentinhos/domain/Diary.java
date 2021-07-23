@@ -1,5 +1,7 @@
 package meli.bootcamp.dentinhos.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -21,8 +23,8 @@ public class Diary {
     private LocalDateTime endingTime;
 
     @ManyToOne
-    @JoinColumn(name = "ID_DENTIST")
-    @JsonIgnore
+    @JoinColumn(name = "id_dentist")
+    @JsonBackReference
     private Dentist dentist;
 
     @OneToMany(mappedBy = "diary")

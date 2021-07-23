@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "USERS")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
@@ -31,8 +30,8 @@ public class User {
 
     private String email;
 
-    @OneToOne
-    @JoinColumn(name = "ID_ADDRESS")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address", referencedColumnName = "id_address")
     private Address address;
 
     public User() {
@@ -126,7 +125,7 @@ public class User {
         return address;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(Address id_address) {
+        this.address = id_address;
     }
 }
