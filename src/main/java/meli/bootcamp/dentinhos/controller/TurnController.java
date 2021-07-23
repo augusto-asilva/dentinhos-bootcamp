@@ -34,6 +34,11 @@ public class TurnController {
         return turnService.findCompletedTurns();
     }
 
+    @GetMapping("/rescheduled")
+    public List<Turn> rescheduledurns() {
+        return turnService.findRescheduledTurns();
+    }
+
     @GetMapping("/completed/{day}/patients")
     public List<UserContactResponseDTO> completedTurns(@PathVariable String day) {
         LocalDate days = LocalDate.parse(day);

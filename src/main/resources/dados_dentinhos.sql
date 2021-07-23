@@ -3,7 +3,8 @@ use dentinhos;
 INSERT INTO turn_status(name, description) 
 values('Concluido','Consulta concluido'),
 ('Cancelado','Consulta cancelado'),
-('Pendente','Consulta pendente');
+('Pendente','Consulta pendente'),
+('Remarcado','Consulta remarcada');
 
 INSERT INTO address (street, district) VALUES
 ('Rua dos alphaneiros', 'Barra'),
@@ -41,4 +42,4 @@ INSERT INTO turns(days, id_diary, id_turn_status, id_patient) VALUES
 ('2021-07-22',2,3,9),
 ('2021-07-23',3,1,4),
 ('2021-07-23',3,2,5),
-('2021-07-23',3,3,6);
+('2021-07-23',3,4,6);
