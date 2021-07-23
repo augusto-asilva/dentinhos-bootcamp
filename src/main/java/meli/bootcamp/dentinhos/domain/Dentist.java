@@ -10,8 +10,8 @@ public class Dentist extends User {
     @Column(name = "code_mp")
     private String codeMp;
 
-    @OneToMany(mappedBy = "id_diary")
-    List<Diary> diaries;
+    @OneToMany(mappedBy = "dentist", fetch = FetchType.LAZY)
+    private List<Diary> diaries;
 
     public Dentist() {
     }
@@ -33,11 +33,11 @@ public class Dentist extends User {
         this.codeMp = code_mp;
     }
 
-    public List<Diary> getDiarys() {
+    public List<Diary> getDiaries() {
         return diaries;
     }
 
-    public void setDiarys(List<Diary> diaries) {
+    public void setDiaries(List<Diary> diaries) {
         this.diaries = diaries;
     }
 }

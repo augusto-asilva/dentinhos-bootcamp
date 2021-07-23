@@ -1,8 +1,10 @@
 package meli.bootcamp.dentinhos.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "diaries")
@@ -19,15 +21,23 @@ public class Diary {
     private LocalDateTime endingTime;
 
     @ManyToOne
+    @JoinColumn(name = "ID_DENTIST")
+    @JsonIgnore
     private Dentist dentist;
+
+    @OneToMany(mappedBy = "diary")
+    private List<Turn> turns;
 
 
     public Diary() {
     }
 
-    public Diary(LocalDateTime startTime, LocalDateTime endingTime) {
+    public Diary(Integer id, LocalDateTime startTime, LocalDateTime endingTime, Dentist dentist, List<Turn> turns) {
+        this.id = id;
         this.startTime = startTime;
         this.endingTime = endingTime;
+        this.dentist = dentist;
+        this.turns = turns;
     }
 
     public int getId() {
@@ -60,5 +70,17 @@ public class Diary {
 
     public void setDentist(Dentist dentist) {
         this.dentist = dentist;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Turn> getTurns() {
+        return turns;
+    }
+
+    public void setTurns(List<Turn> turns) {
+        this.turns = turns;
     }
 }

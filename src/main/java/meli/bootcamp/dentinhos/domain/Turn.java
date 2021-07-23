@@ -1,8 +1,9 @@
 package meli.bootcamp.dentinhos.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "turns")
@@ -16,6 +17,7 @@ public class Turn {
 
     @ManyToOne
     @JoinColumn(name = "id_diary")
+    @JsonIgnore
     private Diary diary;
 
     @ManyToOne

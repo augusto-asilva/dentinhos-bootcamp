@@ -2,7 +2,6 @@ package meli.bootcamp.dentinhos.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "USERS")
@@ -32,13 +31,14 @@ public class User {
 
     private String email;
 
-    @Column(name = "id_address")
-    private int idAddress;
+    @OneToOne
+    @JoinColumn(name = "ID_ADDRESS")
+    private Address address;
 
     public User() {
     }
 
-    public User(String password, String userStatus, String name, String lastName, String dni, LocalDate birthDate, String phone, String email, int idAddress) {
+    public User(String password, String userStatus, String name, String lastName, String dni, LocalDate birthDate, String phone, String email, Address address) {
         this.password = password;
         this.userStatus = userStatus;
         this.name = name;
@@ -47,7 +47,7 @@ public class User {
         this.birthDate = birthDate;
         this.phone = phone;
         this.email = email;
-        this.idAddress = idAddress;
+        this.address = address;
     }
 
     public int getId() {
@@ -122,11 +122,11 @@ public class User {
         this.email = email;
     }
 
-    public int getIdAddress() {
-        return idAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setIdAddress(int id_address) {
-        this.idAddress = id_address;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
