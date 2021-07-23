@@ -1,6 +1,7 @@
 package meli.bootcamp.dentinhos.service;
 
 import meli.bootcamp.dentinhos.domain.Dentist;
+import meli.bootcamp.dentinhos.domain.User;
 import meli.bootcamp.dentinhos.dto.DentistDTO;
 import meli.bootcamp.dentinhos.repository.DentistRepository;
 import meli.bootcamp.dentinhos.utils.ConvertUtils;
@@ -9,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +31,10 @@ public class DentistService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Nenhum dentista encontrado");
 
         return ConvertUtils.map(dentist.get(), DentistDTO.class);
+    }
+
+    public List<String> getTwoTurnsInOneDayAtDentist(Date data){
+        Date novaData = new Date(data.getTime() + (1000 * 60 * 60 * 24));
+        return dentistRepository.dentists(novaData);
     }
 }
