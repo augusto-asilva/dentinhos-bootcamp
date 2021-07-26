@@ -4,8 +4,8 @@ INSERT INTO turn_status(name, description)
 values ('Concluido', 'Consulta concluido'),
        ('Cancelado', 'Consulta cancelado'),
        ('Pendente', 'Consulta pendente');
-       
-INSERT INTO turn_status(name,description) VALUES ('Reprogramado', 'Consulta remarcada');
+
+INSERT INTO turn_status(name,description) VALUES ('Remarcado', 'Consulta remarcada');
 
 INSERT INTO address (street, district)
 VALUES ('Rua dos alphaneiros', 'Barra'),
@@ -43,4 +43,4 @@ VALUES ('2021-07-21', 1, 1, 4),
        ('2021-07-22', 2, 3, 9),
        ('2021-07-23', 3, 1, 4),
        ('2021-07-23', 3, 2, 5),
-       ('2021-07-23', 3, 3, 6);
+       ('2021-07-23', 3, 4, 6);
