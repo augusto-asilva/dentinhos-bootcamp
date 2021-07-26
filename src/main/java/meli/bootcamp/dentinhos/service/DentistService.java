@@ -32,8 +32,9 @@ public class DentistService {
         return ConvertUtils.map(dentist.get(), DentistDTO.class);
     }
 
-    public List<String> getTwoTurnsInOneDayAtDentist(LocalDate date){
+    public List<String> getTwoTurnsInOneDayForDentist(LocalDate date){
 
         return dentistRepository.dentists(date);
+
     }
 }

@@ -22,7 +22,7 @@ public class DentistControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void should_getDentistsNames_whitTwoTurnsInOneSpecificDay() throws Exception {
+    void should_getDentistsNames_withTwoTurnsInSpecificDay() throws Exception {
 
         mockMvc.perform(get("/dentist/twoturns/2021-07-23")
                 .contentType(MediaType.APPLICATION_JSON))
