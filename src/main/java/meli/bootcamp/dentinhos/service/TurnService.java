@@ -1,6 +1,7 @@
 package meli.bootcamp.dentinhos.service;
 
 import meli.bootcamp.dentinhos.domain.Turn;
+import meli.bootcamp.dentinhos.domain.TurnStatus;
 import meli.bootcamp.dentinhos.dto.PendingTurnDTO;
 import meli.bootcamp.dentinhos.repository.TurnRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,14 @@ import java.util.List;
 public class TurnService {
     private TurnRepository turnRepository;
 
+    private final Integer COMPLETED_TURN_ID = 1;
+    private final String PENDING_TURN = "Pendente";
+    private final Integer RESCHEDULED_TURN_ID = 4;
+
     @Autowired
     public TurnService(TurnRepository turnRepository) {
         this.turnRepository = turnRepository;
     }
-
-    private final Integer COMPLETED_TURN_ID = 1;
-    private final Integer RESCHEDULED_TURN_ID = 4;
-
-    private final String PENDING_TURN = "Pendente";
 
 
     public List<Turn> findCompletedTurns() {
@@ -46,6 +46,10 @@ public class TurnService {
             pendingTurnDTOs.add(turn.castToPendingTurnDTO());
         }
         return pendingTurnDTOs;
+    }
+
+    public List<Turn> findRescheduledDentistTurns(int dentistId) {
+        return turnRepository.findByTurnStatusIdAndDiaryDentistId(RESCHEDULED_TURN_ID, dentistId);
     }
 
     public List<Turn> findRescheduledTurns() {

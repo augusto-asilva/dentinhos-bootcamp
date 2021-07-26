@@ -1,11 +1,11 @@
-use
-dentinhos_teste;
+use dentinhos_teste;
 
 INSERT INTO turn_status(name, description)
 values ('Concluido', 'Consulta concluido'),
-       ('Cancelado','Consulta cancelado'),
-       ('Pendente','Consulta pendente'),
-       ('Remarcado','Consulta remarcada');
+       ('Cancelado', 'Consulta cancelado'),
+       ('Pendente', 'Consulta pendente');
+
+INSERT INTO turn_status(name,description) VALUES ('Remarcado', 'Consulta remarcada');
 
 INSERT INTO address (street, district)
 VALUES ('Rua dos alphaneiros', 'Barra'),
