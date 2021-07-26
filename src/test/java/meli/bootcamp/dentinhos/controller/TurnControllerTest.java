@@ -1,5 +1,6 @@
 package meli.bootcamp.dentinhos.controller;
 
+import meli.bootcamp.dentinhos.domain.Dentist;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -52,8 +53,19 @@ public class TurnControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].patient.name", is("dentinho5")))
-                .andExpect(jsonPath("$[0].patient.lastName", is("dba5")));
+                .andExpect(jsonPath("$[0].patient.name", is("dentinho3")))
+                .andExpect(jsonPath("$[0].patient.lastName", is("dba3")));
+    }
+
+    @Test
+    public void should_getRescheduledTurnsforADentist() throws Exception {
+        Dentist dentist = new Dentist();
+        dentist.setId(1);
+        mockMvc.perform(get("/turns/rescheduled/" + dentist.getId())
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].turnStatus.id", is(4)))
+                .andExpect(jsonPath("$[0].turnStatus.name", is("Reprogramado")))
+                .andExpect(status().isOk());
     }
 }
 
