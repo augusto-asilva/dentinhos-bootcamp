@@ -1,7 +1,6 @@
 package meli.bootcamp.dentinhos.service;
 
 import meli.bootcamp.dentinhos.domain.Dentist;
-import meli.bootcamp.dentinhos.domain.User;
 import meli.bootcamp.dentinhos.dto.DentistDTO;
 import meli.bootcamp.dentinhos.repository.DentistRepository;
 import meli.bootcamp.dentinhos.utils.ConvertUtils;
@@ -33,8 +32,8 @@ public class DentistService {
         return ConvertUtils.map(dentist.get(), DentistDTO.class);
     }
 
-    public List<String> getTwoTurnsInOneDayAtDentist(Date data){
-        Date novaData = new Date(data.getTime() + (1000 * 60 * 60 * 24));
-        return dentistRepository.dentists(novaData);
+    public List<String> getTwoTurnsInOneDayAtDentist(LocalDate date){
+
+        return dentistRepository.dentists(date);
     }
 }

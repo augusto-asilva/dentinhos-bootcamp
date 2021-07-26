@@ -1,9 +1,8 @@
 package meli.bootcamp.dentinhos.controller;
 
-import meli.bootcamp.dentinhos.domain.Dentist;
-import meli.bootcamp.dentinhos.domain.User;
 import meli.bootcamp.dentinhos.dto.DentistDTO;
 import meli.bootcamp.dentinhos.service.DentistService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +29,9 @@ public class DentistController {
     }
 
 
-    @GetMapping("/twoturns")
-    public List<String> getTwoTurnsInOneDay(@RequestBody Date data) {
-       return dentistService.getTwoTurnsInOneDayAtDentist(data);
+    @GetMapping("/twoturns/{date}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<String> getTwoTurnsInOneDay(@PathVariable String date) {
+       return dentistService.getTwoTurnsInOneDayAtDentist(LocalDate.parse(date));
     }
 }
