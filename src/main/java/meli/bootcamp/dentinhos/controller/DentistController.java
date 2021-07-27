@@ -32,6 +32,6 @@ public class DentistController {
     @GetMapping("/twoturns/{date}")
     @ResponseStatus(value = HttpStatus.OK)
     public List<String> getTwoTurnsInOneDay(@PathVariable String date) {
-       return dentistService.getTwoTurnsInOneDayAtDentist(LocalDate.parse(date));
+       return dentistService.getTwoTurnsInOneDayForDentist(LocalDate.parse(date));
     }
 }
